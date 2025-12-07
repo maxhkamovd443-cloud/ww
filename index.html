@@ -1,0 +1,63 @@
+
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <style>
+    :root{font-family:Inter, Roboto, Arial, sans-serif}
+    body{display:flex;min-height:100vh;align-items:center;justify-content:center;background:#000000;color:#e6eef8;margin:0}
+   
+    h1{margin:0 0 10px;font-size:18px;font-weight:600}
+    .time{font-size:48px;font-weight:700;letter-spacing:1px}
+    .date{margin-top:8px;font-size:14px;color:#bcd1ee}
+    .status{margin-top:12px;font-size:13px;color:#9fb2dd}
+    .small{font-size:12px;color:#9fb2dd;margin-top:10px}
+    button{margin-top:12px;padding:8px 12px;border-radius:10px;border:0;background:#00000077;color:(white);cursor:pointer}
+    a{color:inherit}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div id="time" class="time">00:23:12</div>
+
+
+ 
+
+  </div>
+
+  <script>
+
+
+
+
+    
+    const API_URL = 'https://worldtimeapi.org/api/timezone/' + TIMEZONE; 
+    let serverUnixMs = null;      
+    let perfAtSync = null;       
+    let offsetMs = 0;          
+
+      setInterval(async ()=>{
+        await syncTime(); 
+      }, 10*60*1000);
+    
+
+    
+    (async function(){
+      await syncTime();
+      startClock();
+    })();
+
+    resyncBtn.addEventListener('click', async ()=>{
+      resyncBtn.disabled = true;
+      resyncBtn.textContent = 'Синхронизация...';
+      await syncTime();
+      resyncBtn.textContent = 'Синхронизировать сейчас';
+      resyncBtn.disabled = false;
+    });
+
+
+  </script>
+  <script src="./script.js"></script>
+</body>
+</html
